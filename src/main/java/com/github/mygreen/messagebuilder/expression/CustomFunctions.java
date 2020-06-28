@@ -34,7 +34,7 @@ public class CustomFunctions {
 
     /**
      * 配列やコレクションの値を結合する。
-     * @param array 結合対象の配列
+     * @param value 結合対象の配列
      * @param delimiter 区切り文字
      * @return 結合した文字列を返す。結合の対象の配列がnulの場合、空文字を返す。
      */
@@ -122,14 +122,13 @@ public class CustomFunctions {
 
     /**
      * 引数が空かどうか判定する。
-     * <p>
-     *  <li>文字列の場合は長さが0かどうか判定する。</li>
-     * </p>
-     * @param value
+     * <p>文字列の場合は長さが0かどうか判定する。</p>
+     *
+     * @param value 判定対象の値
      * @return 空の場合はtrueを返します。
      */
     @SuppressWarnings("rawtypes")
-    public static boolean empty(Object value) {
+    public static boolean empty(final Object value) {
 
         if(value == null) {
             return true;

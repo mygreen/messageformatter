@@ -272,7 +272,6 @@ public class MessageInterpolator {
      * @param expression EL式
      * @param values EL式中の変数。
      * @return 評価した式。
-     * @throws
      */
     protected String evaluateExpression(final String expression, final Map<String, ?> values) {
 
