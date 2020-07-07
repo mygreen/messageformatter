@@ -1,4 +1,4 @@
 /**
  * BeanValidationとの連携機能を提供します。
  */
-package com.github.mygreen.messagebuilder.beanvalidation;
+package com.github.mygreen.messageformatter.beanvalidation;

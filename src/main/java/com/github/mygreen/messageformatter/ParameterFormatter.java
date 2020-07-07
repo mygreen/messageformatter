@@ -1,17 +1,17 @@
-package com.github.mygreen.messagebuilder;
+package com.github.mygreen.messageformatter;
 
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * メッセージ変数中のクラス型や列挙型のフォーマッターです。
+ * メッセージパラメータのクラス型や列挙型のフォーマッターです。
  *
  *
  * @author T.TSUCHIE
  *
  */
-public class MessageVariableFormatter {
+public class ParameterFormatter {
 
     /**
      * アノテーションをフォーマットします。

@@ -1,4 +1,4 @@
-package com.github.mygreen.messagebuilder;
+package com.github.mygreen.messageformatter;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -12,18 +12,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.support.ResourceBundleMessageSource;
 
-import com.github.mygreen.messagebuilder.expression.SpelExpressionEvaluator;
+import com.github.mygreen.messageformatter.expression.SpelExpressionEvaluator;
 
 /**
- * {@link MessageBuilder}のテスタ
+ * {@link MessageFormatter}のテスタ
  *
  *
  * @author T.TSUCHIE
  *
  */
-public class MessageBuilderTest {
+public class MessageFormatterTest {
 
-    private MessageBuilder messageBuilder;
+    private MessageFormatter messageFormatter;
 
     @BeforeEach
     void setUp() throws Exception {
@@ -34,13 +34,13 @@ public class MessageBuilderTest {
 
         MessageInterpolator messageInterpolator = new MessageInterpolator(new SpelExpressionEvaluator());
 
-        this.messageBuilder = new MessageBuilder(messageSource, messageInterpolator);
+        this.messageFormatter = new MessageFormatter(messageSource, messageInterpolator);
     }
 
     @Test
     void testFormat() {
 
-        String result = messageBuilder.create("test.message01")
+        String result = messageFormatter.create("test.message01")
                 .var("validatedValue", 3.1)
                 .var("min", 1)
                 .var("max", 10)
@@ -53,7 +53,7 @@ public class MessageBuilderTest {
     @Test
     void testFormatRecursively() {
 
-        String result = messageBuilder.create("test.recursive")
+        String result = messageFormatter.create("test.recursive")
                 .var("value", "{min}")
 //                .var("min", 3)    // min はプロパティファイルに定義
                 .formatRecursively();
@@ -65,7 +65,7 @@ public class MessageBuilderTest {
     @Test
     void testFormatRecursivelyMax() {
 
-        String result = messageBuilder.create("test.recursiveMax")
+        String result = messageFormatter.create("test.recursiveMax")
                 .var("value", "{max}")
 //                .var("max", "{value}")    // max はプロパティファイルに定義
                 .formatRecursively(5);
@@ -77,7 +77,7 @@ public class MessageBuilderTest {
     @Test
     void testVarWithAnno() {
 
-        String result = messageBuilder.create("test.varWithAnno")
+        String result = messageFormatter.create("test.varWithAnno")
                 .varWithAnno("anno", Entity.class)
                 .format();
 
@@ -88,7 +88,7 @@ public class MessageBuilderTest {
     @Test
     void testVarWithEnum() {
 
-        String result = messageBuilder.create("test.varWithEnum")
+        String result = messageFormatter.create("test.varWithEnum")
                 .varWithEnum("enum", Role.Admin)
                 .format();
 
@@ -98,20 +98,20 @@ public class MessageBuilderTest {
 
     @Test
     void testVarWithClass() {
-        String result = messageBuilder.create("test.varWithClass")
-                .varWithClass("class", MessageBuilder.class)
+        String result = messageFormatter.create("test.varWithClass")
+                .varWithClass("class", MessageFormatter.class)
                 .format();
 
-        assertThat(result).isEqualTo("変数の初期フォーマット：クラス「com.github.mygreen.messagebuilder.MessageBuilder」");
+        assertThat(result).isEqualTo("変数の初期フォーマット：クラス「com.github.mygreen.messageformatter.MessageFormatter」");
     }
 
     @Test
     void testVarWithClasses() {
-        String result = messageBuilder.create("test.varWithClasses")
-                .varWithClass("classes", MessageBuilder.class, SpelExpressionEvaluator.class)
+        String result = messageFormatter.create("test.varWithClasses")
+                .varWithClass("classes", MessageFormatter.class, SpelExpressionEvaluator.class)
                 .format();
 
-        assertThat(result).isEqualTo("変数の初期フォーマット：クラス「com.github.mygreen.messagebuilder.MessageBuilder, com.github.mygreen.messagebuilder.expression.SpelExpressionEvaluator」");
+        assertThat(result).isEqualTo("変数の初期フォーマット：クラス「com.github.mygreen.messageformatter.MessageFormatter, com.github.mygreen.messageformatter.expression.SpelExpressionEvaluator」");
     }
 
     /**

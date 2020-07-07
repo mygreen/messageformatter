@@ -1,4 +1,4 @@
-package com.github.mygreen.messagebuilder.beanvalidator;
+package com.github.mygreen.messageformatter.beanvalidator;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.github.mygreen.messagebuilder.beanvalidation.CustomMessageInterpolator;
+import com.github.mygreen.messageformatter.beanvalidation.CustomMessageInterpolator;
 
 import lombok.Data;
 
@@ -52,9 +52,9 @@ public class CustomMessageInterpolatorTest {
 
             Annotation anno = violation.getConstraintDescriptor().getAnnotation();
             if(anno.annotationType().isAssignableFrom(Max.class)) {
-                assertThat(message).isEqualTo("サンプルの名前は、10より同じか小さい値を設定してください。");
+                assertThat(message).isEqualTo("サンプルの名前の値は、10より同じか小さい値を設定してください。");
             } else if(anno.annotationType().isAssignableFrom(PositiveOrZero.class)) {
-                assertThat(message).isEqualTo("0以上の値を設定してください。");
+                assertThat(message).isEqualTo("年齢の値は、0以上の値を設定してください。");
             }
 
         }

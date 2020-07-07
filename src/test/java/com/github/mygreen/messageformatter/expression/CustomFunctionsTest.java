@@ -1,4 +1,4 @@
-package com.github.mygreen.messagebuilder.expression;
+package com.github.mygreen.messageformatter.expression;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -10,7 +10,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-import com.github.mygreen.messagebuilder.expression.CustomFunctions;
+import com.github.mygreen.messageformatter.expression.CustomFunctions;
 
 
 /**

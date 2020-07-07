@@ -1,4 +1,4 @@
-package com.github.mygreen.messagebuilder;
+package com.github.mygreen.messageformatter;
 
 import java.lang.annotation.Annotation;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
  * @author T.TSUCHIE
  *
  */
-public class MessageBuilder {
+public class MessageFormatter {
 
     /**
      * メッセージソース
@@ -37,31 +37,31 @@ public class MessageBuilder {
     private final MessageInterpolator messageInterpolator;
 
     /**
-     * メッセージ変数中のクラス型や列挙型のフォーマッター
+     * メッセージパラメータのクラス型や列挙型のフォーマッター
      */
     @Getter
-    private final MessageVariableFormatter messageVariableFormatter;
+    private final ParameterFormatter parameterFormatter;
 
     /**
      * インスタンスを作成します。
      * @param messageSource メッセージソース
      * @param messageInterpolator 名前付き変数のメッセージのフォーマッタです。
      */
-    public MessageBuilder(@NonNull MessageSource messageSource, @NonNull MessageInterpolator messageInterpolator) {
-        this(messageSource, messageInterpolator, new MessageVariableFormatter());
+    public MessageFormatter(@NonNull MessageSource messageSource, @NonNull MessageInterpolator messageInterpolator) {
+        this(messageSource, messageInterpolator, new ParameterFormatter());
     }
 
     /**
      * インスタンスを作成します。
      * @param messageSource メッセージソース
      * @param messageInterpolator 名前付き変数のメッセージのフォーマッタです。
-     * @param messageVariableFormatter メッセージ変数中のクラス型や列挙型のフォーマッターです
+     * @param parameterFormatter メッセージ変数中のクラス型や列挙型のフォーマッターです
      */
-    public MessageBuilder(@NonNull MessageSource messageSource, @NonNull MessageInterpolator messageInterpolator,
-            @NonNull MessageVariableFormatter messageVariableFormatter) {
+    public MessageFormatter(@NonNull MessageSource messageSource, @NonNull MessageInterpolator messageInterpolator,
+            @NonNull ParameterFormatter parameterFormatter) {
         this.messageSource = messageSource;
         this.messageInterpolator = messageInterpolator;
-        this.messageVariableFormatter = messageVariableFormatter;
+        this.parameterFormatter = parameterFormatter;
     }
 
     /**
@@ -82,7 +82,7 @@ public class MessageBuilder {
     public Builder create(final String code, final Locale locale) {
         Assert.hasLength(code, "code should not be empty.");
 
-        return new Builder(messageSource, messageInterpolator, messageVariableFormatter, code, locale);
+        return new Builder(messageSource, messageInterpolator, parameterFormatter, code, locale);
     }
 
     /**
@@ -98,7 +98,7 @@ public class MessageBuilder {
 
         private final MessageInterpolator messageInterpolator;
 
-        private final MessageVariableFormatter messageVariableFormatter;
+        private final ParameterFormatter parameterFormatter;
 
         private final String code;
 
@@ -110,7 +110,7 @@ public class MessageBuilder {
         private Map<String, Object> vars = new HashMap<>();
 
         /**
-         * メッセージ変数を追加する。
+         * メッセージパラメータを追加する。
          * @param key 変数名
          * @param value 値
          * @return 自身のインスタンス
@@ -121,8 +121,8 @@ public class MessageBuilder {
         }
 
         /**
-         * メッセージ変数として配列を追加する。
-         * @param key 変数名
+         * メッセージパラメータとして配列を追加する。
+         * @param key パラメータ名
          * @param values 値
          * @return 自身のインスタンス
          */
@@ -132,45 +132,45 @@ public class MessageBuilder {
         }
 
         /**
-         * メッセージ変数としてアノテーション名を追加する。
-         * @param key 変数名
+         * メッセージパラメータとしてアノテーション名を追加する。
+         * @param key パラメータ名
          * @param annoClass アノテーションのクラス名
          * @return 自身のインスタンス
          */
         public Builder varWithAnno(final String key, final Class<? extends Annotation> annoClass) {
-            return var(key, messageVariableFormatter.formatWithAnno(annoClass));
+            return var(key, parameterFormatter.formatWithAnno(annoClass));
         }
 
         /**
-         * メッセージ変数としてクラス名を追加する。
+         * メッセージパラメータとしてクラス名を追加する。
          * <p>クラス名は、FQCNの形式</p>
-         * @param key 変数名
+         * @param key パラメータ名
          * @param clazz クラスタイプ
          * @return 自身のインスタンス
          */
         public Builder varWithClass(final String key, final Class<?> clazz) {
-            return var(key, messageVariableFormatter.formatWithClass(clazz));
+            return var(key, parameterFormatter.formatWithClass(clazz));
         }
 
         /**
-         * メッセージ変数としてクラス名を追加する。
+         * メッセージパラメータとしてクラス名を追加する。
          * <p>クラス名は、FQCNの形式</p>
-         * @param key 変数名
+         * @param key パラメータ名
          * @param classes クラスタイプ
          * @return 自身のインスタンス
          */
         public Builder varWithClass(final String key, final Class<?>... classes) {
-            return var(key, messageVariableFormatter.formatWithClasses(classes));
+            return var(key, parameterFormatter.formatWithClasses(classes));
         }
 
         /**
-         * メッセージ変数として列挙型を追加する。
-         * @param key 変数名
+         * メッセージパラメータとして列挙型を追加する。
+         * @param key パラメータ名
          * @param enums 列挙型の要素
          * @return 自身のインスタンス
          */
         public Builder varWithEnum(final String key, final Enum<?> enums) {
-            return var(key, messageVariableFormatter.formatWithEnum(enums));
+            return var(key, parameterFormatter.formatWithEnum(enums));
 
         }
 

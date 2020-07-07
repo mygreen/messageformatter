@@ -1,4 +1,4 @@
-package com.github.mygreen.messagebuilder;
+package com.github.mygreen.messageformatter;
 
 import java.util.Formatter;
 import java.util.LinkedHashMap;
@@ -8,7 +8,7 @@ import java.util.Map;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.support.MessageSourceAccessor;
 
-import com.github.mygreen.messagebuilder.expression.ExpressionEvaluator;
+import com.github.mygreen.messageformatter.expression.ExpressionEvaluator;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.github.mygreen.messagebuilder;
+package com.github.mygreen.messageformatter;
 
 import java.util.LinkedList;
 

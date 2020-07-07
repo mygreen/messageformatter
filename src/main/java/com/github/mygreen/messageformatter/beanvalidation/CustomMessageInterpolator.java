@@ -1,4 +1,4 @@
-package com.github.mygreen.messagebuilder.beanvalidation;
+package com.github.mygreen.messageformatter.beanvalidation;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -16,7 +16,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.DefaultMessageCodesResolver;
 import org.springframework.validation.MessageCodesResolver;
 
-import com.github.mygreen.messagebuilder.MessageInterpolator;
+import com.github.mygreen.messageformatter.MessageInterpolator;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

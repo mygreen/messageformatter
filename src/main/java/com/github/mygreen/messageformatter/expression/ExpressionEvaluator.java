@@ -1,4 +1,4 @@
-package com.github.mygreen.messagebuilder.expression;
+package com.github.mygreen.messageformatter.expression;
 
 import java.util.Map;
 

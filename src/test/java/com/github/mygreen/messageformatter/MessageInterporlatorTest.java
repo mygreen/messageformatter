@@ -1,4 +1,4 @@
-package com.github.mygreen.messagebuilder;
+package com.github.mygreen.messageformatter;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -12,7 +12,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.expression.spel.SpelEvaluationException;
 
-import com.github.mygreen.messagebuilder.expression.SpelExpressionEvaluator;
+import com.github.mygreen.messageformatter.MessageInterpolator;
+import com.github.mygreen.messageformatter.expression.SpelExpressionEvaluator;
 
 /**
  * {@link MessageInterpolator}のテスタ

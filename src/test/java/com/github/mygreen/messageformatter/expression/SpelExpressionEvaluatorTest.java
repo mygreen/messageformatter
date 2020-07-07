@@ -1,4 +1,4 @@
-package com.github.mygreen.messagebuilder.expression;
+package com.github.mygreen.messageformatter.expression;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.expression.spel.SpelParseException;
+
+import com.github.mygreen.messageformatter.expression.SpelExpressionEvaluator;
 
 
 /**
