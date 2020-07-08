@@ -86,7 +86,7 @@ public class MessageFormatter {
     }
 
     /**
-     * メッセージ中に埋め込む変数を組み立てるビルダークラス。
+     * メッセージ中に埋め込むパラメータを組み立てるビルダークラス。
      *
      * @author T.TSUCHIE
      *
