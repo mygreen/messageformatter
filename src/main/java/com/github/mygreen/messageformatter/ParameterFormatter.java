@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * メッセージパラメータのクラス型や列挙型のフォーマッターです。
+ * アノテーション型や列挙型などの特定のパラメータをフォーマットします。
  *
  *
  * @author T.TSUCHIE
