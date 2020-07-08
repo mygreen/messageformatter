@@ -37,9 +37,15 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public class CustomMessageInterpolator implements javax.validation.MessageInterpolator {
 
+    /**
+     * メッセージソース。
+     */
     @Getter
     private final MessageSource messageSource;
 
+    /**
+     * パラメータ付きのメッセージのフォーマッタ。
+     */
     @Getter
     private final MessageInterpolator messageInterpolator;
 
