@@ -115,7 +115,7 @@ public class MessageFormatter {
          * @param value 値
          * @return 自身のインスタンス
          */
-        public Builder var(final String key, final Object value) {
+        public Builder param(final String key, final Object value) {
             vars.put(key, value);
             return this;
         }
@@ -126,7 +126,7 @@ public class MessageFormatter {
          * @param values 値
          * @return 自身のインスタンス
          */
-        public Builder varWithArrays(final String key, final Object... values) {
+        public Builder paramWithArrays(final String key, final Object... values) {
             vars.put(key, values);
             return this;
         }
@@ -137,8 +137,8 @@ public class MessageFormatter {
          * @param annoClass アノテーションのクラス名
          * @return 自身のインスタンス
          */
-        public Builder varWithAnno(final String key, final Class<? extends Annotation> annoClass) {
-            return var(key, parameterFormatter.formatWithAnno(annoClass));
+        public Builder paramWithAnno(final String key, final Class<? extends Annotation> annoClass) {
+            return param(key, parameterFormatter.formatWithAnno(annoClass));
         }
 
         /**
@@ -148,8 +148,8 @@ public class MessageFormatter {
          * @param clazz クラスタイプ
          * @return 自身のインスタンス
          */
-        public Builder varWithClass(final String key, final Class<?> clazz) {
-            return var(key, parameterFormatter.formatWithClass(clazz));
+        public Builder paramWithClass(final String key, final Class<?> clazz) {
+            return param(key, parameterFormatter.formatWithClass(clazz));
         }
 
         /**
@@ -159,8 +159,8 @@ public class MessageFormatter {
          * @param classes クラスタイプ
          * @return 自身のインスタンス
          */
-        public Builder varWithClass(final String key, final Class<?>... classes) {
-            return var(key, parameterFormatter.formatWithClasses(classes));
+        public Builder paramWithClass(final String key, final Class<?>... classes) {
+            return param(key, parameterFormatter.formatWithClasses(classes));
         }
 
         /**
@@ -169,8 +169,8 @@ public class MessageFormatter {
          * @param enums 列挙型の要素
          * @return 自身のインスタンス
          */
-        public Builder varWithEnum(final String key, final Enum<?> enums) {
-            return var(key, parameterFormatter.formatWithEnum(enums));
+        public Builder paramWithEnum(final String key, final Enum<?> enums) {
+            return param(key, parameterFormatter.formatWithEnum(enums));
 
         }
 

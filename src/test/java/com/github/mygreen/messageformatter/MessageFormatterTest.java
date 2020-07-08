@@ -41,9 +41,9 @@ public class MessageFormatterTest {
     void testFormat() {
 
         String result = messageFormatter.create("test.message01")
-                .var("validatedValue", 3.1)
-                .var("min", 1)
-                .var("max", 10)
+                .param("validatedValue", 3.1)
+                .param("min", 1)
+                .param("max", 10)
                 .format();
 
         assertThat(result).isEqualTo("メッセージ：3.10は、1～10の範囲で入力してください。");
@@ -54,7 +54,7 @@ public class MessageFormatterTest {
     void testFormatRecursively() {
 
         String result = messageFormatter.create("test.recursive")
-                .var("value", "{min}")
+                .param("value", "{min}")
 //                .var("min", 3)    // min はプロパティファイルに定義
                 .formatRecursively();
 
@@ -66,7 +66,7 @@ public class MessageFormatterTest {
     void testFormatRecursivelyMax() {
 
         String result = messageFormatter.create("test.recursiveMax")
-                .var("value", "{max}")
+                .param("value", "{max}")
 //                .var("max", "{value}")    // max はプロパティファイルに定義
                 .formatRecursively(5);
 
@@ -78,7 +78,7 @@ public class MessageFormatterTest {
     void testVarWithAnno() {
 
         String result = messageFormatter.create("test.varWithAnno")
-                .varWithAnno("anno", Entity.class)
+                .paramWithAnno("anno", Entity.class)
                 .format();
 
         assertThat(result).isEqualTo("変数の初期フォーマット：アノテーション「@Entity」");
@@ -89,7 +89,7 @@ public class MessageFormatterTest {
     void testVarWithEnum() {
 
         String result = messageFormatter.create("test.varWithEnum")
-                .varWithEnum("enum", Role.Admin)
+                .paramWithEnum("enum", Role.Admin)
                 .format();
 
         assertThat(result).isEqualTo("変数の初期フォーマット：列挙型「Role#Admin」");
@@ -99,7 +99,7 @@ public class MessageFormatterTest {
     @Test
     void testVarWithClass() {
         String result = messageFormatter.create("test.varWithClass")
-                .varWithClass("class", MessageFormatter.class)
+                .paramWithClass("class", MessageFormatter.class)
                 .format();
 
         assertThat(result).isEqualTo("変数の初期フォーマット：クラス「com.github.mygreen.messageformatter.MessageFormatter」");
@@ -108,7 +108,7 @@ public class MessageFormatterTest {
     @Test
     void testVarWithClasses() {
         String result = messageFormatter.create("test.varWithClasses")
-                .varWithClass("classes", MessageFormatter.class, SpelExpressionEvaluator.class)
+                .paramWithClass("classes", MessageFormatter.class, SpelExpressionEvaluator.class)
                 .format();
 
         assertThat(result).isEqualTo("変数の初期フォーマット：クラス「com.github.mygreen.messageformatter.MessageFormatter, com.github.mygreen.messageformatter.expression.SpelExpressionEvaluator」");
