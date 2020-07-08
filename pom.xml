@@ -48,6 +48,8 @@
 			</testResource>
 		</testResources>
 		<pluginManagement>
+			<plugins>
+			</plugins>
 		</pluginManagement>
 		<plugins>
 			<plugin>
@@ -86,9 +88,37 @@
 				</dependencies>
 			</plugin>
 			<plugin>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok-maven-plugin</artifactId>
+				<version>1.18.12.0</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>delombok</goal>
+						</goals>
+						<configuration>
+							<addOutputDirectory>false</addOutputDirectory>
+							<sourceDirectory>src/main/java</sourceDirectory>
+							<encoding>${source.encode}</encoding>
+	                    </configuration>
+					</execution>
+				</executions>
+				</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.2.0</version>
+				<!--
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>javadoc</goal>
+						</goals>
+					</execution>
+				</executions>
+				 -->
 				<configuration>
 					<nohelp>true</nohelp>
 					<charset>UTF-8</charset>
@@ -96,7 +126,8 @@
 					<docencoding>UTF-8</docencoding>
 					<locale>ja_JP</locale>
 					<maxmemory>512m</maxmemory>
-                    <javadocExecutable>${java.home}/bin/javadoc.exe</javadocExecutable>
+					<javadocExecutable>${java.home}/bin/javadoc.exe</javadocExecutable>
+					<sourcepath>target/generated-sources/delombok</sourcepath>
 				</configuration>
 			</plugin>
 		</plugins>
