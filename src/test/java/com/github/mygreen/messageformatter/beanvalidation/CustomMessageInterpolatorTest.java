@@ -1,4 +1,4 @@
-package com.github.mygreen.messageformatter.beanvalidator;
+package com.github.mygreen.messageformatter.beanvalidation;
 
 import static org.assertj.core.api.Assertions.*;
 

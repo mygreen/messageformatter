@@ -1,4 +1,4 @@
-package com.github.mygreen.messageformatter.beanvalidator;
+package com.github.mygreen.messageformatter.beanvalidation;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
