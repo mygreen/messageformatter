@@ -10,8 +10,6 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-import com.github.mygreen.messageformatter.expression.CustomFunctions;
-
 
 /**
  * {@link CustomFunctions}のテスタ
@@ -23,7 +21,7 @@ import com.github.mygreen.messageformatter.expression.CustomFunctions;
 public class CustomFunctionsTest extends CustomFunctions {
 
     /**
-     * {@link CustomFunctions#defaultString(String)}
+     * {@link CustomFunctions#defaultString(CharSequence)}
      */
     @Test
     public void testDefaultString() {
@@ -75,6 +73,9 @@ public class CustomFunctionsTest extends CustomFunctions {
 
     }
 
+    /**
+     * {@link CustomFunctions#empty(Object)}
+     */
     @Test
     public void testEmpty() {
 
@@ -91,6 +92,28 @@ public class CustomFunctionsTest extends CustomFunctions {
 
         assertThat(empty(new Object[] {})).isTrue();
         assertThat(empty(new Object[] {"1"})).isFalse();
+
+    }
+
+    /**
+     * {@link CustomFunctions#empty(Object)}
+     */
+    @Test
+    public void testSize() {
+
+        assertThat(size(null)).isEqualTo(0);
+
+        assertThat(size("")).isEqualTo(0);
+        assertThat(size("abc")).isEqualTo(3);
+
+        assertThat(size(Collections.emptyList())).isEqualTo(0);
+        assertThat(size(List.of("a", "b", "c"))).isEqualTo(3);
+
+        assertThat(size(Map.of())).isEqualTo(0);
+        assertThat(size(Map.of("a", 1, "b", 2, "c", 3))).isEqualTo(3);
+
+        assertThat(size(new Object[] {})).isEqualTo(0);
+        assertThat(size(new Object[] {"1", "2", "3"})).isEqualTo(3);
 
 
     }

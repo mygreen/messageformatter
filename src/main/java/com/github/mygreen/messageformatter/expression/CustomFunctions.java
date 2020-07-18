@@ -24,12 +24,12 @@ public class CustomFunctions {
      * @param text 判定対象の文字列
      * @return 非nullの場合は、引数の値をそのまま返す。
      */
-    public static String defaultString(final String text) {
+    public static String defaultString(final CharSequence text) {
         if(text == null) {
             return "";
         }
 
-        return text;
+        return text.toString();
     }
 
     /**
@@ -134,8 +134,8 @@ public class CustomFunctions {
             return true;
         }
 
-        if(value instanceof String) {
-            return ((String) value).isEmpty();
+        if(value instanceof CharSequence) {
+            return ((CharSequence) value).length() == 0;
 
         } else if(value instanceof Collection) {
             return ((Collection) value).isEmpty();
@@ -148,6 +148,37 @@ public class CustomFunctions {
         }
 
         return value.toString().isEmpty();
+
+    }
+
+    /**
+     * 引数の値のサイズを取得します。
+     * <p>文字列の場合は文字長を返します。</p>
+     *
+     * @param value 取得対象の値。
+     * @return nullの場合は0を返します。
+     */
+    @SuppressWarnings("rawtypes")
+    public static int size(final Object value) {
+
+        if(value == null) {
+            return 0;
+        }
+
+        if(value instanceof CharSequence) {
+            return ((CharSequence) value).length();
+
+        } else if(value instanceof Collection) {
+            return ((Collection) value).size();
+
+        } else if(value instanceof Map) {
+            return ((Map) value).size();
+
+        } else if(value.getClass().isArray()) {
+            return ((Object[]) value).length;
+        }
+
+        return value.toString().length();
 
     }
 
