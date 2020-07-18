@@ -8,7 +8,6 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import com.github.mygreen.messageformatter.MessageInterpolator;
-import com.github.mygreen.messageformatter.beanvalidation.CustomMessageInterpolator;
 import com.github.mygreen.messageformatter.expression.SpelExpressionEvaluator;
 
 @Configuration
