@@ -6,6 +6,12 @@
 		<version>1.9</version>
 	</skin>
 	<body>
+		<menu name="使い方について">
+			<item name="基本的な使い方" href="howtouse.html" />
+			<item name="EL式によるフォーマット" href="expression_launguage.html" />
+			<item name="再帰的にメッセージを評価する" href="recursion.html" />
+			<item name="BeanValidationとの連携" href="beanvalidation.html" />
+		</menu>
 		<menu ref="reports" />
 	</body>
 </project>
