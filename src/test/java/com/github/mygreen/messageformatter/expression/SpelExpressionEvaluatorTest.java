@@ -10,8 +10,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.expression.spel.SpelParseException;
 
-import com.github.mygreen.messageformatter.expression.SpelExpressionEvaluator;
-
 
 /**
  * {@link SpelExpressionEvaluator}のテスト

@@ -12,7 +12,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.expression.spel.SpelEvaluationException;
 
-import com.github.mygreen.messageformatter.MessageInterpolator;
 import com.github.mygreen.messageformatter.expression.SpelExpressionEvaluator;
 
 /**
