@@ -41,14 +41,14 @@
 
 	<organization>
 		<name>mygreen</name>
-		<url>http://mygreen.github.io/messageformatter/</url>
+		<url>https://mygreen.github.io/messageformatter/</url>
 	</organization>
 
 	<developers>
 		<developer>
 			<id>mygreen</id>
 			<name>Tatsuo TSUCHIE</name>
-			<url>http://mygreen.github.io/messageformatter/</url>
+			<url>https://mygreen.github.io/messageformatter/</url>
 			<roles>
 				<role>developer</role>
 			</roles>
