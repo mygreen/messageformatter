@@ -7,7 +7,8 @@
 	<name>messageformatter</name>
 	<packaging>jar</packaging>
 	<version>0.1</version>
-	<description><![CDATA[MessageFormatter with SpringFramework]]></description>
+	<description><![CDATA[Message formatter using SpringFramework]]></description>
+	<url>https://mygreen.github.io/messageformatter/</url>
 
 	<issueManagement>
 		<system>github</system>
@@ -20,16 +21,13 @@
 		<url>https://github.com/mygreen/messageformatter</url>
 	</scm>
 
-	<parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>9</version>
-	</parent>
-
 	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
 		<repository>
-			<id>sonatype-nexus-staging</id>
-			<name>Maven Central Repository</name>
+			<id>ossrh</id>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 	</distributionManagement>
@@ -241,6 +239,17 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.8</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
