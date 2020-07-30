@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SpelExpressionEvaluator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">messageformatter</a> &gt; <a href="index.source.html" class="el_package">com.github.mygreen.messageformatter.expression</a> &gt; <span class="el_source">SpelExpressionEvaluator.java</span></div><h1>SpelExpressionEvaluator.java</h1><pre class="source lang-java linenums">package com.github.mygreen.messageformatter.expression;
+
+import java.lang.reflect.Method;
+import java.util.Collections;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+import org.springframework.util.Assert;
+
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * SpELいよる式を評価する {@link ExpressionEvaluator} の実装。
+ *
+ * @author T.TSUCHIE
+ *
+ */
+<span class="fc" id="L25">@Slf4j</span>
+public class SpelExpressionEvaluator implements ExpressionEvaluator {
+
+    /**
+     * パースしたEL式のキャッシュ
+     */
+<span class="fc" id="L31">    protected final ObjectCache&lt;String, Expression&gt; expressionCache = new ObjectCache&lt;&gt;();</span>
+
+    /**
+     * EL式のパーサ
+     */
+    @Getter
+    private final ExpressionParser expressionParser;
+
+    /**
+     * EL式中で利用可能なカスタム関数の情報
+     */
+    @Getter
+    private final Map&lt;String, Method&gt; customFunctions;
+
+    /**
+     * EL式中で使用するカスタム関数を指定してインスタンスを作成します。
+     * @param expressionParser EL式のパーサ
+     * @param customFunctions EL式中で使用するカスタム関数
+     */
+<span class="pc bpc" id="L50" title="2 of 4 branches missed.">    public SpelExpressionEvaluator(@NonNull ExpressionParser expressionParser, @NonNull Map&lt;String, Method&gt; customFunctions) {</span>
+<span class="fc" id="L51">        this.expressionParser = expressionParser;</span>
+<span class="fc" id="L52">        this.customFunctions = new ConcurrentHashMap&lt;&gt;(customFunctions);</span>
+<span class="fc" id="L53">    }</span>
+
+    /**
+     * インスタンスを作成します。
+     * @param expressionParser EL式のパーサ
+     */
+<span class="nc bnc" id="L59" title="All 2 branches missed.">    public SpelExpressionEvaluator(@NonNull ExpressionParser expressionParser) {</span>
+<span class="nc" id="L60">        this(expressionParser, Collections.emptyMap());</span>
+<span class="nc" id="L61">    }</span>
+
+    /**
+     * 標準設定のEL式パーサを元にインスタンスを作成します。
+     * &lt;p&gt;カスタム関数 {@link CustomFunctions} が登録されています。&lt;/p&gt;
+     */
+    public SpelExpressionEvaluator() {
+<span class="fc" id="L68">        this(new SpelExpressionParser(), StaticMethodMapCreator.create(CustomFunctions.class));</span>
+<span class="fc" id="L69">    }</span>
+
+    @Override
+<span class="pc bpc" id="L72" title="2 of 4 branches missed.">    public Object evaluate(@NonNull final String expression, @NonNull final Map&lt;String, Object&gt; variables) {</span>
+
+<span class="fc" id="L74">        Assert.hasLength(expression, &quot;expression should not be empty.&quot;);</span>
+
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">        if(log.isDebugEnabled()) {</span>
+<span class="fc" id="L77">            log.debug(&quot;Evaluating SpEL expression: {}&quot;, expression);</span>
+        }
+
+<span class="fc" id="L80">        Expression expr = expressionCache.get(expression);</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        if(expr == null) {</span>
+<span class="fc" id="L82">            expr = expressionParser.parseExpression(expression);</span>
+<span class="fc" id="L83">            expressionCache.put(expression, expr);</span>
+        }
+
+<span class="fc" id="L86">        final EvaluationContext context = createEvaluationContext(variables);</span>
+<span class="fc" id="L87">        return expr.getValue(context);</span>
+
+    }
+
+    /**
+     * コンテキストを作成します。
+     * @param variables 式中で利用する変数
+     * @return SpELのコンテキスト
+     */
+    protected EvaluationContext createEvaluationContext(final Map&lt;String, Object&gt; variables) {
+
+<span class="fc" id="L98">        final StandardEvaluationContext  context = new StandardEvaluationContext();</span>
+
+        // 変数の登録
+<span class="fc" id="L101">        context.setVariables(variables);</span>
+
+        // カスタム関数の登録
+<span class="fc" id="L104">        customFunctions.forEach((k, v) -&gt; context.registerFunction(k, v));</span>
+
+<span class="fc" id="L106">        return context;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
