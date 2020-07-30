@@ -29,7 +29,7 @@ MessageInterpolator messageInterpolator = new MessageInterpolator(new SpelExpres
 MessageFormatter messageFormatter = new MessageFormatter(messageSource, messageInterpolator);
 ```
 
-## 3.メッセージをフォーマットします
+## 3.メッセージをフォーマットする
 
 - ``create("<プロパティのキー>")`` にて、定義したメッセージのキーを指定します。
 - ``param("<パラメータ名>", <値>)`` にて、メッセージ中のパラメータの値を指定します。

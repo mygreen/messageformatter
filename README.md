@@ -1,4 +1,4 @@
-# Message Builder
+# MessageFormatter
 
 Spring Frameworkの ``MessageSource`` を使い、表示メッセージをフォーマットするライブラリです。
 
