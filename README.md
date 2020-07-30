@@ -10,7 +10,7 @@ MIT License
 ## Dependency
 
 - Java 11+
-- SpringFramework 5.1+
+- SpringFramework 5.0+
 - BeanValidation 2.0(optional)
 - JEXL 2.1(optional)
 
