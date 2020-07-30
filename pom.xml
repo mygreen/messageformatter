@@ -62,6 +62,16 @@
 		<slf4j.version>1.7.25</slf4j.version>
 		<logback.version>1.2.3</logback.version>
 		<jacoco.include.package>com.github.mygreen.messageformatter.*</jacoco.include.package>
+
+		<!-- SonarQubeの解析から除外したいファイル -->
+		<sonar.exclusions>
+			**/sample/*,
+			**/*Test.*,
+			**/*.js,
+		</sonar.exclusions>
+		<sonar.projectName>${groupId}/${project.artifactId}</sonar.projectName>
+		<sonar.host.url>https://sonarcloud.io/</sonar.host.url>
+		<sonar.organization>mygreen-github</sonar.organization>
 	</properties>
 
 	<build>
