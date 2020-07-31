@@ -1,5 +1,5 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.mygreen/messageformatter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.mygreen/messageformatter/)
-[![Javadocs](http://javadoc.io/badge/com.github.mygreen/messageformatter.svg?color=blue)](http://javadoc.io/doc/com.github.mygreen/messageformatter)
+[![Javadocs](https://javadoc.io/badge/com.github.mygreen/messageformatter.svg?color=blue)](https://javadoc.io/doc/com.github.mygreen/messageformatter)
 [![Build Status](https://travis-ci.org/mygreen/messageformatter.svg?branch=master)](https://travis-ci.org/mygreen/messageformatter)
 [![SonarQube](https://sonarcloud.io/api/project_badges/measure?project=com.github.mygreen%3Amessageformatter&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.mygreen%3Amessageformatter)
 
