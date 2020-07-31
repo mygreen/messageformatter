@@ -50,7 +50,7 @@ App dependency. ex) pom.xml
   double value = 3.1;
   String message = messageFormatter.create("test.message")
       .param("validatedValue", value)
-      .parm("min", 1)
+      .param("min", 1)
       .param("max", 10)
       .format();
   ```
