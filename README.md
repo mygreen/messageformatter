@@ -27,7 +27,7 @@ App dependency. ex) pom.xml
 <dependency>
 	<groupId>com.github.mygreen</groupId>
 	<artifactId>messageformatter</artifactId>
-	<vesion>0.2</version>
+	<version>0.2</version>
 </dependency>
 ```
 

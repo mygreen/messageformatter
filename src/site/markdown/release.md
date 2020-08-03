@@ -2,7 +2,7 @@
 
 ## ver 0.2 - 2020-08-03
 
-- [#3](https://github.com/mygreen/messageformatter/pull/3) - 指摘解析の指摘対応。
+- [#3](https://github.com/mygreen/messageformatter/pull/3) - 静的解析の指摘対応。
 
 - 使用していないメソッドの削除
 
