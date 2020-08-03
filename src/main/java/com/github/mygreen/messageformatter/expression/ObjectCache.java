@@ -1,6 +1,7 @@
 package com.github.mygreen.messageformatter.expression;
 
 import java.lang.ref.SoftReference;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -29,7 +30,7 @@ public class ObjectCache<K, V> {
      * 最後にアクセスしたキャッシュの値。
      * {@link #objectsToKeepCount} の値により保持するサイズが変わります。
      */
-    private final LinkedList<V> objectsLastAccessed = new LinkedList<>();
+    private final Deque<V> objectsLastAccessed = new LinkedList<>();
 
     /**
      * GCによってメモリを開放する時に{@link SoftReference} が削除されるときに、
