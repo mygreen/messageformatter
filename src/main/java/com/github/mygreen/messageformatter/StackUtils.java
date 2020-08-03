@@ -17,22 +17,6 @@ import lombok.NonNull;
 public class StackUtils {
 
     /**
-     * スタックの最後の要素（一番下の要素）が引数で指定した文字列と等しいかどうか比較する。
-     * @param stack スタック
-     * @param str 比較対象の文字列
-     * @return スタックの最後の要素が引数 {@code str} と等しいとき {@code true} を返す。
-     */
-    public static boolean equalsBottomElement(final Deque<String> stack, final String str) {
-
-        if(stack.isEmpty()) {
-            return false;
-        }
-
-        return stack.peekLast().equals(str);
-
-    }
-
-    /**
      *  スタックの最後の要素（一番下の要素）が引数で指定した文字列の何れかと等しいかどうか比較する。
      * @param stack スタック
      * @param strs 比較対象の文字列の配列。
@@ -69,30 +53,6 @@ public class StackUtils {
         }
 
         return stack.peekFirst().equals(str);
-
-    }
-
-    /**
-     * スタックの先頭の要素（一番上の要素）が引数で指定した文字列の何れかと等しいかどうか比較する。
-     * @param stack スタック
-     * @param strs 比較する文字列の配列
-     * @return スタックの先頭の要素が引数 {@code strs} の何れかと等しいとき {@code true} を返す。
-     */
-    public static boolean equalsAnyTopElement(
-            @NonNull final Deque<String> stack, @NonNull final String[] strs) {
-
-        if(stack.isEmpty()) {
-            return false;
-        }
-
-        final String top = stack.peekFirst();
-        for(String str : strs) {
-            if(str.equals(top)) {
-                return true;
-            }
-        }
-
-        return false;
 
     }
 
