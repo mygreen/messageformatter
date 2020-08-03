@@ -97,7 +97,7 @@ public class CustomFunctions {
         }
 
         return Arrays.stream(array)
-                .map(v -> v.toString())
+                .map(Object::toString)
                 .collect(Collectors.joining(defaultString(delimiter)));
     }
 
@@ -114,7 +114,7 @@ public class CustomFunctions {
         }
 
         return collection.stream()
-                .map(v -> v.toString())
+                .map(Object::toString)
                 .collect(Collectors.joining(defaultString(delimiter)));
     }
 
