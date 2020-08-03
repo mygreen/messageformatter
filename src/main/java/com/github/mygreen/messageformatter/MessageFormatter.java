@@ -126,7 +126,7 @@ public class MessageFormatter {
          * @param values 値
          * @return 自身のインスタンス
          */
-        public Builder paramWithArrays(final String key, final Object... values) {
+        public Builder param(final String key, final Object... values) {
             vars.put(key, values);
             return this;
         }

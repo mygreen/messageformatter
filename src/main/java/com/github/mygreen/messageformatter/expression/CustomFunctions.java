@@ -5,12 +5,16 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 /**
  * EL式中で利用可能なEL関数。
  *
  * @author T.TSUCHIE
  *
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CustomFunctions {
 
     /**
@@ -74,12 +78,10 @@ public class CustomFunctions {
             return "";
         }
 
-        String value = Arrays.stream(array)
+        return Arrays.stream(array)
                 .boxed()
                 .map(String::valueOf)
                 .collect(Collectors.joining(defaultString(delimiter)));
-
-        return value;
     }
 
     /**
@@ -94,11 +96,9 @@ public class CustomFunctions {
             return "";
         }
 
-        String value = Arrays.stream(array)
-                .map(v -> v.toString())
+        return Arrays.stream(array)
+                .map(Object::toString)
                 .collect(Collectors.joining(defaultString(delimiter)));
-
-        return value;
     }
 
     /**
@@ -113,11 +113,9 @@ public class CustomFunctions {
             return "";
         }
 
-        String value = collection.stream()
-                .map(v -> v.toString())
+        return collection.stream()
+                .map(Object::toString)
                 .collect(Collectors.joining(defaultString(delimiter)));
-
-        return value;
     }
 
     /**

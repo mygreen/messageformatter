@@ -30,7 +30,7 @@ import lombok.Data;
  */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes=ValidationTestConfig.class)
-public class CustomMessageInterpolatorTest {
+class CustomMessageInterpolatorTest {
 
     @Autowired
     Validator validator;
@@ -64,7 +64,7 @@ public class CustomMessageInterpolatorTest {
      *
      */
     @Data
-    public static class SampleBean {
+    static class SampleBean {
 
         @NotBlank
         @Max(10)

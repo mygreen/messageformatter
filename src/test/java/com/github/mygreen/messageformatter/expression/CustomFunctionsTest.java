@@ -18,17 +18,17 @@ import org.junit.jupiter.api.Test;
  * @author T.TSUCHIE
  *
  */
-public class CustomFunctionsTest extends CustomFunctions {
+class CustomFunctionsTest {
 
     /**
      * {@link CustomFunctions#defaultString(CharSequence)}
      */
     @Test
-    public void testDefaultString() {
+    void testDefaultString() {
 
-        assertThat(defaultString(null)).isEqualTo("");
-        assertThat(defaultString("")).isEqualTo("");
-        assertThat(defaultString("abc")).isEqualTo("abc");
+        assertThat(CustomFunctions.defaultString(null)).isEmpty();
+        assertThat(CustomFunctions.defaultString("")).isEmpty();
+        assertThat(CustomFunctions.defaultString("abc")).isEqualTo("abc");
 
     }
 
@@ -36,12 +36,12 @@ public class CustomFunctionsTest extends CustomFunctions {
      * {@link CustomFunctions#join(int[], String)}
      */
     @Test
-    public void testJoin_int_array() {
+    void testJoin_int_array() {
 
-        assertThat(join((int[])null, ", ")).isEqualTo("");
-        assertThat(join(new int[]{}, ", ")).isEqualTo("");
-        assertThat(join(new int[]{1,2,3}, ", ")).isEqualTo("1, 2, 3");
-        assertThat(join(new int[]{1,2,3}, null)).isEqualTo("123");
+        assertThat(CustomFunctions.join((int[])null, ", ")).isEmpty();
+        assertThat(CustomFunctions.join(new int[]{}, ", ")).isEmpty();
+        assertThat(CustomFunctions.join(new int[]{1,2,3}, ", ")).isEqualTo("1, 2, 3");
+        assertThat(CustomFunctions.join(new int[]{1,2,3}, null)).isEqualTo("123");
 
     }
 
@@ -49,12 +49,12 @@ public class CustomFunctionsTest extends CustomFunctions {
      * {@link CustomFunctions#join(Object[], String)}
      */
     @Test
-    public void testJoin_object_array() {
+    void testJoin_object_array() {
 
-        assertThat(join((Object[])null, ", ")).isEqualTo("");
-        assertThat(join(new Object[]{}, ", ")).isEqualTo("");
-        assertThat(join(new Object[]{1,2,3}, ", ")).isEqualTo("1, 2, 3");
-        assertThat(join(new Object[]{1,2,3}, null)).isEqualTo("123");
+        assertThat(CustomFunctions.join((Object[])null, ", ")).isEmpty();
+        assertThat(CustomFunctions.join(new Object[]{}, ", ")).isEmpty();
+        assertThat(CustomFunctions.join(new Object[]{1,2,3}, ", ")).isEqualTo("1, 2, 3");
+        assertThat(CustomFunctions.join(new Object[]{1,2,3}, null)).isEqualTo("123");
 
     }
 
@@ -62,14 +62,14 @@ public class CustomFunctionsTest extends CustomFunctions {
      * {@link CustomFunctions#join(java.util.Collection, String)}
      */
     @Test
-    public void testJoin_collection() {
+    void testJoin_collection() {
 
         Collection<Integer> input = Arrays.asList(1000, 2000, 3000);
 
-        assertThat(join((Collection<Integer>)null, ", ")).isEqualTo("");
-        assertThat(join(Collections.emptyList(), ", ")).isEqualTo("");
-        assertThat(join(input, ", ")).isEqualTo("1000, 2000, 3000");
-        assertThat(join(input, null)).isEqualTo("100020003000");
+        assertThat(CustomFunctions.join((Collection<Integer>)null, ", ")).isEmpty();
+        assertThat(CustomFunctions.join(Collections.emptyList(), ", ")).isEmpty();
+        assertThat(CustomFunctions.join(input, ", ")).isEqualTo("1000, 2000, 3000");
+        assertThat(CustomFunctions.join(input, null)).isEqualTo("100020003000");
 
     }
 
@@ -77,21 +77,21 @@ public class CustomFunctionsTest extends CustomFunctions {
      * {@link CustomFunctions#empty(Object)}
      */
     @Test
-    public void testEmpty() {
+    void testEmpty() {
 
-        assertThat(empty(null)).isTrue();
+        assertThat(CustomFunctions.empty(null)).isTrue();
 
-        assertThat(empty("")).isTrue();
-        assertThat(empty("a")).isFalse();
+        assertThat(CustomFunctions.empty("")).isTrue();
+        assertThat(CustomFunctions.empty("a")).isFalse();
 
-        assertThat(empty(Collections.emptyList())).isTrue();
-        assertThat(empty(List.of("a"))).isFalse();
+        assertThat(CustomFunctions.empty(Collections.emptyList())).isTrue();
+        assertThat(CustomFunctions.empty(List.of("a"))).isFalse();
 
-        assertThat(empty(Map.of())).isTrue();
-        assertThat(empty(Map.of("a", 1))).isFalse();
+        assertThat(CustomFunctions.empty(Map.of())).isTrue();
+        assertThat(CustomFunctions.empty(Map.of("a", 1))).isFalse();
 
-        assertThat(empty(new Object[] {})).isTrue();
-        assertThat(empty(new Object[] {"1"})).isFalse();
+        assertThat(CustomFunctions.empty(new Object[] {})).isTrue();
+        assertThat(CustomFunctions.empty(new Object[] {"1"})).isFalse();
 
     }
 
@@ -99,21 +99,21 @@ public class CustomFunctionsTest extends CustomFunctions {
      * {@link CustomFunctions#empty(Object)}
      */
     @Test
-    public void testSize() {
+    void testSize() {
 
-        assertThat(size(null)).isEqualTo(0);
+        assertThat(CustomFunctions.size(null)).isZero();
 
-        assertThat(size("")).isEqualTo(0);
-        assertThat(size("abc")).isEqualTo(3);
+        assertThat(CustomFunctions.size("")).isZero();
+        assertThat(CustomFunctions.size("abc")).isEqualTo(3);
 
-        assertThat(size(Collections.emptyList())).isEqualTo(0);
-        assertThat(size(List.of("a", "b", "c"))).isEqualTo(3);
+        assertThat(CustomFunctions.size(Collections.emptyList())).isZero();
+        assertThat(CustomFunctions.size(List.of("a", "b", "c"))).isEqualTo(3);
 
-        assertThat(size(Map.of())).isEqualTo(0);
-        assertThat(size(Map.of("a", 1, "b", 2, "c", 3))).isEqualTo(3);
+        assertThat(CustomFunctions.size(Map.of())).isZero();
+        assertThat(CustomFunctions.size(Map.of("a", 1, "b", 2, "c", 3))).isEqualTo(3);
 
-        assertThat(size(new Object[] {})).isEqualTo(0);
-        assertThat(size(new Object[] {"1", "2", "3"})).isEqualTo(3);
+        assertThat(CustomFunctions.size(new Object[] {})).isZero();
+        assertThat(CustomFunctions.size(new Object[] {"1", "2", "3"})).isEqualTo(3);
 
 
     }

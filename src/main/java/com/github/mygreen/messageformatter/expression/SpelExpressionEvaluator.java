@@ -101,7 +101,7 @@ public class SpelExpressionEvaluator implements ExpressionEvaluator {
         context.setVariables(variables);
 
         // カスタム関数の登録
-        customFunctions.forEach((k, v) -> context.registerFunction(k, v));
+        customFunctions.forEach(context::registerFunction);
 
         return context;
     }
