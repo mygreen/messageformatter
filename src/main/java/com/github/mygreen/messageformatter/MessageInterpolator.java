@@ -1,5 +1,6 @@
 package com.github.mygreen.messageformatter;
 
+import java.util.Deque;
 import java.util.Formatter;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -105,7 +106,7 @@ public class MessageInterpolator {
          * 式の開始が現れたらスタックに積み、式の終了が現れたらスタックから全てを取り出す。
          * スタックに積まれるのは、1つ文の変数またはEL式。
          */
-        final LinkedList<String> stack = new LinkedList<>();
+        final Deque<String> stack = new LinkedList<>();
 
         final int length = message.length();
 
