@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StackUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">messageformatter</a> &gt; <a href="index.source.html" class="el_package">com.github.mygreen.messageformatter</a> &gt; <span class="el_source">StackUtils.java</span></div><h1>StackUtils.java</h1><pre class="source lang-java linenums">package com.github.mygreen.messageformatter;
+
+import java.util.Deque;
+
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+
+
+/**
+ * {@link Deque}に対するユーティリティクラス。
+ *
+ * @author T.TSUCHIE
+ *
+ */
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
+public class StackUtils {
+
+    /**
+     *  スタックの最後の要素（一番下の要素）が引数で指定した文字列の何れかと等しいかどうか比較する。
+     * @param stack スタック
+     * @param strs 比較対象の文字列の配列。
+     * @return スタックの最後の要素が引数 {@code strs} の何れかと等しいとき {@code true} を返す。
+     */
+    public static boolean equalsAnyBottomElement(
+<span class="pc bpc" id="L26" title="2 of 4 branches missed.">            @NonNull final Deque&lt;String&gt; stack, @NonNull final String[] strs) {</span>
+
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        if(stack.isEmpty()) {</span>
+<span class="fc" id="L29">            return false;</span>
+        }
+
+<span class="fc" id="L32">        final String bottom = stack.peekLast();</span>
+<span class="pc bpc" id="L33" title="1 of 2 branches missed.">        for(String str : strs) {</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">            if(str.equals(bottom)) {</span>
+<span class="fc" id="L35">                return true;</span>
+            }
+        }
+
+<span class="nc" id="L39">        return false;</span>
+
+    }
+
+    /**
+     * スタックの先頭の要素（一番上の要素）が引数で指定した文字列と等しいかどうか比較する。
+     * @param stack スタック
+     * @param str 比較対象の文字列
+     * @return スタックの先頭の要素が引数 {@code str} と等しいとき {@code true} を返す。
+     */
+    public static  boolean equalsTopElement(final Deque&lt;String&gt; stack, final String str) {
+
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if(stack.isEmpty()) {</span>
+<span class="fc" id="L52">            return false;</span>
+        }
+
+<span class="fc" id="L55">        return stack.peekFirst().equals(str);</span>
+
+    }
+
+    /**
+     * スタックの値を先頭から全て取り出し、文字列として結合する。
+     * @param stack スタック
+     * @return スタックの要素を結合した文字列。
+     */
+    public static String popupAndConcat(final Deque&lt;String&gt; stack) {
+
+<span class="fc" id="L66">        StringBuilder value = new StringBuilder();</span>
+
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        while(!stack.isEmpty()) {</span>
+<span class="fc" id="L69">            value.append(stack.pollLast());</span>
+        }
+
+<span class="fc" id="L72">        return value.toString();</span>
+
+    }
+
+    /**
+     * スタックから先頭の値を取り出す。
+     * @param stack スタック
+     * @return スタックが空の場合は空文字を返す。
+     */
+    public static String popup(final Deque&lt;String&gt; stack) {
+
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">        if(stack.isEmpty()) {</span>
+<span class="nc" id="L84">            return &quot;&quot;;</span>
+        }
+
+<span class="fc" id="L87">        return stack.pollFirst();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

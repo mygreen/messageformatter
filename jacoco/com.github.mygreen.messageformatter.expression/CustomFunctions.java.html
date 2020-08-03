@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CustomFunctions.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">messageformatter</a> &gt; <a href="index.source.html" class="el_package">com.github.mygreen.messageformatter.expression</a> &gt; <span class="el_source">CustomFunctions.java</span></div><h1>CustomFunctions.java</h1><pre class="source lang-java linenums">package com.github.mygreen.messageformatter.expression;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+/**
+ * EL式中で利用可能なEL関数。
+ *
+ * @author T.TSUCHIE
+ *
+ */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public class CustomFunctions {
+
+    /**
+     * 文字列がnullの場合に空文字に変換する。
+     * &lt;pre class=&quot;highlight&quot;&gt;&lt;code class=&quot;java&quot;&gt;
+     *     CustomFunctions.defaultString(null) = &quot;&quot;
+     *     CustomFunctions.defaultString(&quot;&quot;) = &quot;&quot;
+     *     CustomFunctions.defaultString(&quot;abc&quot;) = &quot;abc&quot;
+     * &lt;/code&gt;&lt;/pre&gt;
+     *
+     * @param text 判定対象の文字列
+     * @return 非nullの場合は、引数の値をそのまま返す。
+     */
+    public static String defaultString(final CharSequence text) {
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        if(text == null) {</span>
+<span class="fc" id="L33">            return &quot;&quot;;</span>
+        }
+
+<span class="fc" id="L36">        return text.toString();</span>
+    }
+
+    /**
+     * 配列やコレクションの値を結合する。
+     * @param value 結合対象の配列
+     * @param delimiter 区切り文字
+     * @return 結合した文字列を返す。結合の対象の配列がnulの場合、空文字を返す。
+     */
+    @SuppressWarnings(&quot;rawtypes&quot;)
+    public static String join(final Object value, final String delimiter) {
+
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if(value == null) {</span>
+<span class="fc" id="L49">            return &quot;&quot;;</span>
+        }
+
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        if(value instanceof Collection) {</span>
+<span class="fc" id="L53">            return join((Collection)value, delimiter);</span>
+
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">        } else if(value.getClass().isArray()) {</span>
+<span class="fc" id="L56">            Class&lt;?&gt; componentType = value.getClass().getComponentType();</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">            if(componentType.equals(Integer.TYPE)) {</span>
+<span class="fc" id="L58">                return join((int[])value, delimiter);</span>
+            } else {
+<span class="fc" id="L60">                return join((Object[])value, delimiter);</span>
+            }
+
+        }
+
+<span class="nc" id="L65">        throw new IllegalArgumentException(String.format(&quot;arg type ('%s') is not support.&quot;, value.getClass()));</span>
+
+    }
+
+    /**
+     * int型の配列の値を結合する。
+     * @param array 結合対象の配列
+     * @param delimiter 区切り文字
+     * @return 結合した文字列を返す。結合の対象の配列がnulの場合、空文字を返す。
+     */
+    private static String join(final int[] array, final String delimiter) {
+
+<span class="pc bpc" id="L77" title="1 of 4 branches missed.">        if(array == null || array.length == 0) {</span>
+<span class="fc" id="L78">            return &quot;&quot;;</span>
+        }
+
+<span class="fc" id="L81">        return Arrays.stream(array)</span>
+<span class="fc" id="L82">                .boxed()</span>
+<span class="fc" id="L83">                .map(String::valueOf)</span>
+<span class="fc" id="L84">                .collect(Collectors.joining(defaultString(delimiter)));</span>
+    }
+
+    /**
+     * 配列の値を結合する。
+     * @param array 結合対象の配列
+     * @param delimiter 区切り文字
+     * @return 結合した文字列を返す。結合の対象の配列がnulの場合、空文字を返す。
+     */
+    private static String join(final Object[] array, final String delimiter) {
+
+<span class="pc bpc" id="L95" title="1 of 4 branches missed.">        if(array == null || array.length == 0) {</span>
+<span class="fc" id="L96">            return &quot;&quot;;</span>
+        }
+
+<span class="fc" id="L99">        return Arrays.stream(array)</span>
+<span class="fc" id="L100">                .map(Object::toString)</span>
+<span class="fc" id="L101">                .collect(Collectors.joining(defaultString(delimiter)));</span>
+    }
+
+    /**
+     * コレクションの値を結合する。
+     * @param collection 結合対象のコレクション
+     * @param delimiter 区切り文字
+     * @return 結合した文字列を返す。結合の対象のコレクションがnulの場合、空文字を返す。
+     */
+    private static String join(final Collection&lt;?&gt; collection, final String delimiter) {
+
+<span class="pc bpc" id="L112" title="1 of 4 branches missed.">        if(collection == null || collection.isEmpty()) {</span>
+<span class="fc" id="L113">            return &quot;&quot;;</span>
+        }
+
+<span class="fc" id="L116">        return collection.stream()</span>
+<span class="fc" id="L117">                .map(Object::toString)</span>
+<span class="fc" id="L118">                .collect(Collectors.joining(defaultString(delimiter)));</span>
+    }
+
+    /**
+     * 引数が空かどうか判定する。
+     * &lt;p&gt;文字列の場合は長さが0かどうか判定する。&lt;/p&gt;
+     *
+     * @param value 判定対象の値
+     * @return 空の場合はtrueを返します。
+     */
+    @SuppressWarnings(&quot;rawtypes&quot;)
+    public static boolean empty(final Object value) {
+
+<span class="fc bfc" id="L131" title="All 2 branches covered.">        if(value == null) {</span>
+<span class="fc" id="L132">            return true;</span>
+        }
+
+<span class="fc bfc" id="L135" title="All 2 branches covered.">        if(value instanceof CharSequence) {</span>
+<span class="fc bfc" id="L136" title="All 2 branches covered.">            return ((CharSequence) value).length() == 0;</span>
+
+<span class="fc bfc" id="L138" title="All 2 branches covered.">        } else if(value instanceof Collection) {</span>
+<span class="fc" id="L139">            return ((Collection) value).isEmpty();</span>
+
+<span class="fc bfc" id="L141" title="All 2 branches covered.">        } else if(value instanceof Map) {</span>
+<span class="fc" id="L142">            return ((Map) value).isEmpty();</span>
+
+<span class="pc bpc" id="L144" title="1 of 2 branches missed.">        } else if(value.getClass().isArray()) {</span>
+<span class="fc bfc" id="L145" title="All 2 branches covered.">            return ((Object[]) value).length == 0;</span>
+        }
+
+<span class="nc" id="L148">        return value.toString().isEmpty();</span>
+
+    }
+
+    /**
+     * 引数の値のサイズを取得します。
+     * &lt;p&gt;文字列の場合は文字長を返します。&lt;/p&gt;
+     *
+     * @param value 取得対象の値。
+     * @return nullの場合は0を返します。
+     */
+    @SuppressWarnings(&quot;rawtypes&quot;)
+    public static int size(final Object value) {
+
+<span class="fc bfc" id="L162" title="All 2 branches covered.">        if(value == null) {</span>
+<span class="fc" id="L163">            return 0;</span>
+        }
+
+<span class="fc bfc" id="L166" title="All 2 branches covered.">        if(value instanceof CharSequence) {</span>
+<span class="fc" id="L167">            return ((CharSequence) value).length();</span>
+
+<span class="fc bfc" id="L169" title="All 2 branches covered.">        } else if(value instanceof Collection) {</span>
+<span class="fc" id="L170">            return ((Collection) value).size();</span>
+
+<span class="fc bfc" id="L172" title="All 2 branches covered.">        } else if(value instanceof Map) {</span>
+<span class="fc" id="L173">            return ((Map) value).size();</span>
+
+<span class="pc bpc" id="L175" title="1 of 2 branches missed.">        } else if(value.getClass().isArray()) {</span>
+<span class="fc" id="L176">            return ((Object[]) value).length;</span>
+        }
+
+<span class="nc" id="L179">        return value.toString().length();</span>
+
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
