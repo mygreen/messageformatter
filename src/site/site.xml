@@ -16,10 +16,12 @@
 			<item name="EL式によるフォーマット" href="expression_launguage.html" />
 			<item name="再帰的にメッセージを評価する" href="recursion.html" />
 			<item name="BeanValidationとの連携" href="beanvalidation.html" />
+			<item name="リリースノート" href="release.html" />
 		</menu>
 		<menu name="関連リンク">
 			<item name="GitHub" href="https://github.com/mygreen/messageformatter/" />
 			<item name="JavaDoc" href="apidocs/index.html" />
+			<item name="SonarCloud" href="https://sonarcloud.io/dashboard?id=com.github.mygreen%3Amessageformatter" />
 		</menu>
 		<menu ref="reports" />
 	</body>
