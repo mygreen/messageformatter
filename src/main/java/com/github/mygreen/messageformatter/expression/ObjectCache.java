@@ -7,38 +7,38 @@ import java.util.Map;
 
 
 public class ObjectCache<K, V> {
-    
-    private final Map<K, SoftReference<V>> map = new HashMap<K, SoftReference<V>>();
-    
-    private final LinkedList<V> objectsLastAccessed = new LinkedList<V>();
+
+    private final Map<K, SoftReference<V>> map = new HashMap<>();
+
+    private final LinkedList<V> objectsLastAccessed = new LinkedList<>();
     private final int objectsToKeepCount;
-    
+
     /**
      * Creates a new cache keeping all objects.
      */
     public ObjectCache() {
         this.objectsToKeepCount = -1;
     }
-    
+
     /**
-     * @param maxObjectsToKeep the number of cached objects that should stay in memory when GC 
-     * starts removing SoftReferences to free memory 
+     * @param maxObjectsToKeep the number of cached objects that should stay in memory when GC
+     * starts removing SoftReferences to free memory
      */
     public ObjectCache(final int maxObjectsToKeep) {
         this.objectsToKeepCount = maxObjectsToKeep;
     }
-    
+
     public void compact() {
         for (final Map.Entry<K, SoftReference<V>> entry : map.entrySet()) {
             final SoftReference<V> ref = entry.getValue();
             if (ref.get() == null) map.remove(entry.getKey());
         }
     }
-    
+
     public boolean contains(final K key) {
         return map.containsKey(key);
     }
-    
+
     public V get(final K key) {
         final SoftReference<V> softReference = map.get(key);
         if (softReference != null) {
@@ -54,7 +54,7 @@ public class ObjectCache<K, V> {
         }
         return null;
     }
-    
+
     public void put(final K key, final V value) {
         map.remove(key);
         map.put(key, new SoftReference<V>(value));
