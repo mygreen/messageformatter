@@ -2,6 +2,8 @@ package com.github.mygreen.messageformatter;
 
 import java.util.LinkedList;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 
@@ -11,6 +13,7 @@ import lombok.NonNull;
  * @author T.TSUCHIE
  *
  */
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class StackUtils {
 
     /**
