@@ -78,12 +78,10 @@ public class CustomFunctions {
             return "";
         }
 
-        String value = Arrays.stream(array)
+        return Arrays.stream(array)
                 .boxed()
                 .map(String::valueOf)
                 .collect(Collectors.joining(defaultString(delimiter)));
-
-        return value;
     }
 
     /**
@@ -98,11 +96,9 @@ public class CustomFunctions {
             return "";
         }
 
-        String value = Arrays.stream(array)
+        return Arrays.stream(array)
                 .map(v -> v.toString())
                 .collect(Collectors.joining(defaultString(delimiter)));
-
-        return value;
     }
 
     /**
@@ -117,11 +113,9 @@ public class CustomFunctions {
             return "";
         }
 
-        String value = collection.stream()
+        return collection.stream()
                 .map(v -> v.toString())
                 .collect(Collectors.joining(defaultString(delimiter)));
-
-        return value;
     }
 
     /**
