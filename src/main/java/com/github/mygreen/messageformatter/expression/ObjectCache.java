@@ -106,6 +106,6 @@ public class ObjectCache<K, V> {
      */
     public void put(final K key, final V value) {
         map.remove(key);
-        map.put(key, new SoftReference<V>(value));
+        map.put(key, new SoftReference<>(value));
     }
 }
