@@ -218,7 +218,7 @@ public class MessageInterpolator {
 
             } else {
                 // 該当するキーが存在しない場合は、値をそのまま返す。
-                return expression.toString();
+                return String.valueOf(expression);
             }
 
         } else if(expression.startsWith("${")) {
