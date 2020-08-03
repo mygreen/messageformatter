@@ -5,12 +5,16 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 /**
  * EL式中で利用可能なEL関数。
  *
  * @author T.TSUCHIE
  *
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CustomFunctions {
 
     /**
