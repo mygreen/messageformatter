@@ -3,12 +3,16 @@ package com.github.mygreen.messageformatter.expression;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.SpelParseException;
+import org.springframework.expression.spel.SpelParserConfiguration;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
 
 
 /**
@@ -87,5 +91,33 @@ class SpelExpressionEvaluatorTest {
         Object result = expressionEvaluator.evaluate(expression, variables);
         assertThat(result).isEqualTo("1, 2, 3");
 
+    }
+
+    @DisplayName("カスタムしたExpressionParserを指定する場合")
+    @Test
+    void testConstructor_customExpressionParser() {
+
+        SpelParserConfiguration configuration = new SpelParserConfiguration(true, true);
+        ExpressionParser expressionParser = new SpelExpressionParser(configuration);
+        this.expressionEvaluator = new SpelExpressionEvaluator(expressionParser);
+
+        String expression = "#obj.list[3]";
+
+        Nested obj = new Nested();
+
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("obj", obj);
+
+        Object result = expressionEvaluator.evaluate(expression, variables);
+        assertThat(result).isEqualTo("");
+
+        // リストのサイズが自動的に増えていること
+        assertThat(obj.list).hasSize(4);
+
+    }
+
+    static class Nested {
+
+        public List<String> list;
     }
 }
