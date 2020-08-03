@@ -75,6 +75,17 @@ class MessageFormatterTest {
     }
 
     @Test
+    void testVarWithArray() {
+
+        String result = messageFormatter.create("test.varWithArray")
+                .param("arrays", 1, "abc", 3)
+                .format();
+
+        assertThat(result).isEqualTo("配列の指定：「1,abc,3」");
+
+    }
+
+    @Test
     void testVarWithAnno() {
 
         String result = messageFormatter.create("test.varWithAnno")
