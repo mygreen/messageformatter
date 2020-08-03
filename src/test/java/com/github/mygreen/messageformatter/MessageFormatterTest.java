@@ -21,7 +21,7 @@ import com.github.mygreen.messageformatter.expression.SpelExpressionEvaluator;
  * @author T.TSUCHIE
  *
  */
-public class MessageFormatterTest {
+class MessageFormatterTest {
 
     private MessageFormatter messageFormatter;
 
@@ -71,6 +71,17 @@ public class MessageFormatterTest {
                 .formatRecursively(5);
 
         assertThat(result).isEqualTo("再帰的なメッセージ：{abc}={max}");
+
+    }
+
+    @Test
+    void testVarWithArray() {
+
+        String result = messageFormatter.create("test.varWithArray")
+                .param("arrays", 1, "abc", 3)
+                .format();
+
+        assertThat(result).isEqualTo("配列の指定：「1,abc,3」");
 
     }
 

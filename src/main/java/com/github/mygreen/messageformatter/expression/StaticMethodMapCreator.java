@@ -7,12 +7,16 @@ import java.util.Map;
 
 import org.springframework.util.ReflectionUtils;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 /**
  * EL式中で使用するためのstaticメソッドのマッピング情報を作成します。
  *
  * @author T.TSUCHIE
  *
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class StaticMethodMapCreator {
 
     /**

@@ -20,18 +20,18 @@ import com.github.mygreen.messageformatter.expression.SpelExpressionEvaluator;
  * @author T.TSUCHIE
  *
  */
-public class MessageInterporlatorTest {
+class MessageInterporlatorTest {
 
     private MessageInterpolator interpolator;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         this.interpolator = new MessageInterpolator(new SpelExpressionEvaluator());
     }
 
     @DisplayName("変数のみ - EL式なし")
     @Test
-    public void testInterpolate_var() {
+    void testInterpolate_var() {
 
         String message = "{validatedValue} は、{min}～{max}の範囲で入力してください。";
 
@@ -49,7 +49,7 @@ public class MessageInterporlatorTest {
 
     @DisplayName("EL式あり - 数値のフォーマット")
     @Test
-    public void testInterpolate_el01() {
+    void testInterpolate_el01() {
 
         String message = "${#formatter.format('%1.1f', #validatedValue)}は、${#min}～${#max}の範囲で入力してください。";
 
@@ -67,7 +67,7 @@ public class MessageInterporlatorTest {
 
     @DisplayName("EL式あり - 日付のフォーマット")
     @Test
-    public void testInterpolate_el02() {
+    void testInterpolate_el02() {
 
         String message = "現在の日付「${#formatter.format('%1$tY/%1$tm/%1$td', #validatedValue)}」は未来日です。";
 
@@ -83,7 +83,7 @@ public class MessageInterporlatorTest {
 
     @DisplayName("EL式中にエスケープ文字あり")
     @Test
-    public void testInterpolate_escape01() {
+    void testInterpolate_escape01() {
 
         String message = "\\${#formatter.format('%1.1f',#validatedValue)}は、\\{min}～${#max}の範囲で入力してください。";
 
@@ -101,7 +101,7 @@ public class MessageInterporlatorTest {
 
     @DisplayName("EL式中にエスケープ文字あり")
     @Test
-    public void testInterpolate_escape02() {
+    void testInterpolate_escape02() {
 
         String message = "${'Helo World\\}' + #formatter.format('%1.1f', #validatedValue)}は、{min}～${#max}の範囲で入力してください。";
 
@@ -119,7 +119,7 @@ public class MessageInterporlatorTest {
 
     @DisplayName("メッセージ中の式が途中で終わる場合")
     @Test
-    public void testInterpolate_lack_end() {
+    void testInterpolate_lack_end() {
 
         String message = "${'Helo World\\}' += formatter.format('%1.1f', validatedValue)";
 
@@ -136,7 +136,7 @@ public class MessageInterporlatorTest {
 
     @DisplayName("再起的にメッセージを評価する - 変数の再起")
     @Test
-    public void testInterpolate_recursive_vars() {
+    void testInterpolate_recursive_vars() {
 
         String message = "{abc} : {message}";
 
@@ -150,7 +150,7 @@ public class MessageInterporlatorTest {
 
     @DisplayName("再起的にメッセージを評価する - 評価の再帰")
     @Test
-    public void testInterpolate_recursive_el() {
+    void testInterpolate_recursive_el() {
 
         String message = "{abc} : ${#value}";
 
@@ -165,7 +165,7 @@ public class MessageInterporlatorTest {
 
     @DisplayName("再起的にメッセージを評価する - 評価の再帰(最大回数)")
     @Test
-    public void testInterpolate_recursive_max() {
+    void testInterpolate_recursive_max() {
 
         String message = "{abc} : ${#value}";
 
@@ -180,7 +180,7 @@ public class MessageInterporlatorTest {
 
     @DisplayName("変数の値がない場合")
     @Test
-    public void testInterpolate_no_define_vars() {
+    void testInterpolate_no_define_vars() {
 
         String message = "{rowNumber}";
 
@@ -193,7 +193,7 @@ public class MessageInterporlatorTest {
 
     @DisplayName("EL式中の変数の値がない場合 - EL式")
     @Test
-    public void testInterpolate_no_define_vars2() {
+    void testInterpolate_no_define_vars2() {
 
         String message = "${rowNumber}";
 

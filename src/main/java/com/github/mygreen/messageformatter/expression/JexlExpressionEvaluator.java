@@ -73,7 +73,7 @@ public class JexlExpressionEvaluator implements ExpressionEvaluator {
                 expressionCache.put(expression, expr);
             }
 
-            return expr.evaluate(new MapContext((Map<String, Object>) variables));
+            return expr.evaluate(new MapContext(variables));
 
         } catch(Exception ex) {
             throw new EvaluationException(String.format("Evaluating [%s] script with JEXL failed.", expression), ex);

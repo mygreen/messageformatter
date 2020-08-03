@@ -18,7 +18,7 @@ import org.springframework.expression.EvaluationException;
  * @author T.TSUCHIE
  *
  */
-public class JexlExpressionEvaluatorTest {
+class JexlExpressionEvaluatorTest {
 
     private JexlExpressionEvaluator expressionEvaluator;
 

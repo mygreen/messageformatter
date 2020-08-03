@@ -114,9 +114,6 @@ public class CustomMessageInterpolator implements javax.validation.MessageInterp
         // デフォルトのメッセージ
         final String defaultCode = String.format("%s.message", descriptor.getAnnotation().annotationType().getCanonicalName());
         final String defaultMessage = messageSource.getMessage(defaultCode, null, locale);
-        if(defaultMessage == null) {
-            throw new RuntimeException(String.format("not found message code '%s'", defaultCode));
-        }
 
         vars.put(defaultCode, defaultMessage);
 

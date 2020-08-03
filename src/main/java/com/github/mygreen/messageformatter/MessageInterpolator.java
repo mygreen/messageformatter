@@ -1,5 +1,6 @@
 package com.github.mygreen.messageformatter;
 
+import java.util.Deque;
 import java.util.Formatter;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -105,7 +106,7 @@ public class MessageInterpolator {
          * 式の開始が現れたらスタックに積み、式の終了が現れたらスタックから全てを取り出す。
          * スタックに積まれるのは、1つ文の変数またはEL式。
          */
-        final LinkedList<String> stack = new LinkedList<String>();
+        final Deque<String> stack = new LinkedList<>();
 
         final int length = message.length();
 
@@ -218,7 +219,7 @@ public class MessageInterpolator {
 
             } else {
                 // 該当するキーが存在しない場合は、値をそのまま返す。
-                return expression.toString();
+                return String.valueOf(expression);
             }
 
         } else if(expression.startsWith("${")) {
@@ -275,7 +276,7 @@ public class MessageInterpolator {
      */
     protected String evaluateExpression(final String expression, final Map<String, ?> values) {
 
-        final Map<String, Object> context = new LinkedHashMap<String, Object>();
+        final Map<String, Object> context = new LinkedHashMap<>();
         context.putAll(values);
 
         // フォーマッターの追加
@@ -309,7 +310,7 @@ public class MessageInterpolator {
         final String escapeStr = String.valueOf(escapeChar);
         StringBuilder sb = new StringBuilder();
 
-        LinkedList<String> stack = new LinkedList<String>();
+        LinkedList<String> stack = new LinkedList<>();
 
         final int length = str.length();
         for(int i=0; i < length; i++) {

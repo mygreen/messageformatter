@@ -6,7 +6,7 @@
 	<artifactId>messageformatter</artifactId>
 	<name>messageformatter</name>
 	<packaging>jar</packaging>
-	<version>0.1</version>
+	<version>0.2</version>
 	<description><![CDATA[Message formatter using SpringFramework]]></description>
 	<url>https://mygreen.github.io/messageformatter/</url>
 
@@ -69,9 +69,10 @@
 			**/*Test.*,
 			**/*.js,
 		</sonar.exclusions>
-		<sonar.projectName>${groupId}/${project.artifactId}</sonar.projectName>
+		<sonar.projectName>${project.groupId}/${project.artifactId}</sonar.projectName>
 		<sonar.host.url>https://sonarcloud.io/</sonar.host.url>
 		<sonar.organization>mygreen-github</sonar.organization>
+		<sonar.coverage.jacoco.xmlReportPaths>${project.directory}/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
 
 	<build>
@@ -243,6 +244,13 @@
 							</includes>
 						</configuration>
 					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
 				</executions>
 			</plugin>
 			<plugin>
@@ -250,7 +258,7 @@
 				<artifactId>spotbugs-maven-plugin</artifactId>
 				<version>4.0.4</version>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.sonarsource.scanner.maven</groupId>
 				<artifactId>sonar-maven-plugin</artifactId>
