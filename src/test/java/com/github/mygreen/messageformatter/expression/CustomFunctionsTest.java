@@ -26,8 +26,8 @@ class CustomFunctionsTest {
     @Test
     void testDefaultString() {
 
-        assertThat(CustomFunctions.defaultString(null)).isEqualTo("");
-        assertThat(CustomFunctions.defaultString("")).isEqualTo("");
+        assertThat(CustomFunctions.defaultString(null)).isEmpty();
+        assertThat(CustomFunctions.defaultString("")).isEmpty();
         assertThat(CustomFunctions.defaultString("abc")).isEqualTo("abc");
 
     }
@@ -38,8 +38,8 @@ class CustomFunctionsTest {
     @Test
     void testJoin_int_array() {
 
-        assertThat(CustomFunctions.join((int[])null, ", ")).isEqualTo("");
-        assertThat(CustomFunctions.join(new int[]{}, ", ")).isEqualTo("");
+        assertThat(CustomFunctions.join((int[])null, ", ")).isEmpty();
+        assertThat(CustomFunctions.join(new int[]{}, ", ")).isEmpty();
         assertThat(CustomFunctions.join(new int[]{1,2,3}, ", ")).isEqualTo("1, 2, 3");
         assertThat(CustomFunctions.join(new int[]{1,2,3}, null)).isEqualTo("123");
 
@@ -51,8 +51,8 @@ class CustomFunctionsTest {
     @Test
     void testJoin_object_array() {
 
-        assertThat(CustomFunctions.join((Object[])null, ", ")).isEqualTo("");
-        assertThat(CustomFunctions.join(new Object[]{}, ", ")).isEqualTo("");
+        assertThat(CustomFunctions.join((Object[])null, ", ")).isEmpty();
+        assertThat(CustomFunctions.join(new Object[]{}, ", ")).isEmpty();
         assertThat(CustomFunctions.join(new Object[]{1,2,3}, ", ")).isEqualTo("1, 2, 3");
         assertThat(CustomFunctions.join(new Object[]{1,2,3}, null)).isEqualTo("123");
 
@@ -66,8 +66,8 @@ class CustomFunctionsTest {
 
         Collection<Integer> input = Arrays.asList(1000, 2000, 3000);
 
-        assertThat(CustomFunctions.join((Collection<Integer>)null, ", ")).isEqualTo("");
-        assertThat(CustomFunctions.join(Collections.emptyList(), ", ")).isEqualTo("");
+        assertThat(CustomFunctions.join((Collection<Integer>)null, ", ")).isEmpty();
+        assertThat(CustomFunctions.join(Collections.emptyList(), ", ")).isEmpty();
         assertThat(CustomFunctions.join(input, ", ")).isEqualTo("1000, 2000, 3000");
         assertThat(CustomFunctions.join(input, null)).isEqualTo("100020003000");
 
@@ -101,18 +101,18 @@ class CustomFunctionsTest {
     @Test
     void testSize() {
 
-        assertThat(CustomFunctions.size(null)).isEqualTo(0);
+        assertThat(CustomFunctions.size(null)).isZero();
 
-        assertThat(CustomFunctions.size("")).isEqualTo(0);
+        assertThat(CustomFunctions.size("")).isZero();
         assertThat(CustomFunctions.size("abc")).isEqualTo(3);
 
-        assertThat(CustomFunctions.size(Collections.emptyList())).isEqualTo(0);
+        assertThat(CustomFunctions.size(Collections.emptyList())).isZero();
         assertThat(CustomFunctions.size(List.of("a", "b", "c"))).isEqualTo(3);
 
-        assertThat(CustomFunctions.size(Map.of())).isEqualTo(0);
+        assertThat(CustomFunctions.size(Map.of())).isZero();
         assertThat(CustomFunctions.size(Map.of("a", 1, "b", 2, "c", 3))).isEqualTo(3);
 
-        assertThat(CustomFunctions.size(new Object[] {})).isEqualTo(0);
+        assertThat(CustomFunctions.size(new Object[] {})).isZero();
         assertThat(CustomFunctions.size(new Object[] {"1", "2", "3"})).isEqualTo(3);
 
 
