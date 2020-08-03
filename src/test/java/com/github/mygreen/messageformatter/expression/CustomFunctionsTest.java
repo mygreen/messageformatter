@@ -18,13 +18,13 @@ import org.junit.jupiter.api.Test;
  * @author T.TSUCHIE
  *
  */
-public class CustomFunctionsTest {
+class CustomFunctionsTest {
 
     /**
      * {@link CustomFunctions#defaultString(CharSequence)}
      */
     @Test
-    public void testDefaultString() {
+    void testDefaultString() {
 
         assertThat(CustomFunctions.defaultString(null)).isEqualTo("");
         assertThat(CustomFunctions.defaultString("")).isEqualTo("");
@@ -36,7 +36,7 @@ public class CustomFunctionsTest {
      * {@link CustomFunctions#join(int[], String)}
      */
     @Test
-    public void testJoin_int_array() {
+    void testJoin_int_array() {
 
         assertThat(CustomFunctions.join((int[])null, ", ")).isEqualTo("");
         assertThat(CustomFunctions.join(new int[]{}, ", ")).isEqualTo("");
@@ -49,7 +49,7 @@ public class CustomFunctionsTest {
      * {@link CustomFunctions#join(Object[], String)}
      */
     @Test
-    public void testJoin_object_array() {
+    void testJoin_object_array() {
 
         assertThat(CustomFunctions.join((Object[])null, ", ")).isEqualTo("");
         assertThat(CustomFunctions.join(new Object[]{}, ", ")).isEqualTo("");
@@ -62,7 +62,7 @@ public class CustomFunctionsTest {
      * {@link CustomFunctions#join(java.util.Collection, String)}
      */
     @Test
-    public void testJoin_collection() {
+    void testJoin_collection() {
 
         Collection<Integer> input = Arrays.asList(1000, 2000, 3000);
 
@@ -77,7 +77,7 @@ public class CustomFunctionsTest {
      * {@link CustomFunctions#empty(Object)}
      */
     @Test
-    public void testEmpty() {
+    void testEmpty() {
 
         assertThat(CustomFunctions.empty(null)).isTrue();
 
@@ -99,7 +99,7 @@ public class CustomFunctionsTest {
      * {@link CustomFunctions#empty(Object)}
      */
     @Test
-    public void testSize() {
+    void testSize() {
 
         assertThat(CustomFunctions.size(null)).isEqualTo(0);
 

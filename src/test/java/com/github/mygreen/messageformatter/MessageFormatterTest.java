@@ -21,7 +21,7 @@ import com.github.mygreen.messageformatter.expression.SpelExpressionEvaluator;
  * @author T.TSUCHIE
  *
  */
-public class MessageFormatterTest {
+class MessageFormatterTest {
 
     private MessageFormatter messageFormatter;
 

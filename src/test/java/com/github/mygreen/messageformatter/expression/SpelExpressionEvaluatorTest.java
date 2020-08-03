@@ -18,7 +18,7 @@ import org.springframework.expression.spel.SpelParseException;
  * @author T.TSUCHIE
  *
  */
-public class SpelExpressionEvaluatorTest {
+class SpelExpressionEvaluatorTest {
 
     private SpelExpressionEvaluator expressionEvaluator;
 
