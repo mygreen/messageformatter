@@ -6,7 +6,7 @@
 	<artifactId>messageformatter</artifactId>
 	<name>messageformatter</name>
 	<packaging>jar</packaging>
-	<version>0.1</version>
+	<version>0.2</version>
 	<description><![CDATA[Message formatter using SpringFramework]]></description>
 	<url>https://mygreen.github.io/messageformatter/</url>
 
@@ -250,7 +250,7 @@
 				<artifactId>spotbugs-maven-plugin</artifactId>
 				<version>4.0.4</version>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.sonarsource.scanner.maven</groupId>
 				<artifactId>sonar-maven-plugin</artifactId>
